@@ -1,4 +1,0 @@
-/users/kezhon0/ibex-code/seal/build/CMakeFiles/rebuild_cache.dir
-/users/kezhon0/ibex-code/seal/build/CMakeFiles/he_test.dir
-/users/kezhon0/ibex-code/seal/build/CMakeFiles/edit_cache.dir
-/users/kezhon0/ibex-code/seal/build/CMakeFiles/aggregator_micro_test.dir
