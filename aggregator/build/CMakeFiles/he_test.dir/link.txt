@@ -1,0 +1,1 @@
+/usr/bin/c++   -O2  -rdynamic CMakeFiles/he_test.dir/he_test.o  -o he_test   -L/usr/local/lib  /usr/local/lib/libseal-4.0.a -lssl -lcrypto -pthread 
