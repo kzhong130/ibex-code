@@ -13,4 +13,4 @@ To compile and run the codes, please install the following dependencies:
 + [emp-sh2pc](https://github.com/emp-toolkit/emp-sh2pc).
 + [SealPIR](https://github.com/microsoft/SealPIR), we used a snapshot version of
   SealPIR with some modifications. The codes of SealPIR we used are included in
-  [SealPIR directory](./SealPIR/).
+  [SealPIR directory](./SealPIR/) so you don't need to install it manually.
