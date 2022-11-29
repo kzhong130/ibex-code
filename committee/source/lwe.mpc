@@ -1,0 +1,133 @@
+execfile('/root/SCALE-MAMBA/Programs/ring/ring.mpc')
+from Compiler import mpc_math
+
+
+class LWE(object):
+
+  # In order for decryption to work,
+  #   N and m=2^lgM must be chosen appropriately.
+  # Namely, if you wish to do t ciphertext additions
+  #   and p is the size of the SCALE-MAMBA field, then need:
+  #   t*2*N^2 < p / (2*m)
+  def __init__(self, r, N, lgM, n, lgP):
+    self.r = r  # Ring used
+    self.N = N  # Half-width of binomial distributions
+    # m = Modulus of ciphertext additions
+    # Require p = 1 (mod 2m), and m to be a power of 2
+    self.lgM = lgM
+    self.m = 1 << lgM   # Plaintext modulus (size per element)
+    self.n = n
+    self.lgP = lgP
+    return
+
+  #Returns s, where s is the secret key
+  def secret_key_gen(self):
+    s = r.ringBinom(N)
+    return s
+
+  # Returns [b, a, s]
+  # (b, a) is the public key, s is the secret key
+  def key_gen(self):
+    r = self.r
+    N = self.N
+    a = r.ringRandClear()
+    s = r.ringBinom(N)
+    e = r.ringBinom(N)
+    a_neg = cint.Array(self.n)
+    @for_range(self.n)
+    def range_body(i):
+      e[i] *= cint(self.m)
+      a_neg[i] = -a[i]
+    b = r.reveal(r.ringAdd(r.ringMulFast(a_neg, s), e))
+
+    res = [b, a, s]
+    return res
+
+  # z is plaintext (array) of l elems each modulo m
+  # returns ciphertext [u, v]
+  def enc(self, b, a, z):
+    r = self.r
+    N = self.N
+    m = self.m
+    e0 = r.ringBinom(N)
+    e1 = r.ringBinom(N)
+    e2 = r.ringBinom(N)
+
+    @for_range(self.n)
+    def range_body(i):
+      e1[i] *= cint(self.m)
+
+    # u = a*e0 + m*e1 (mod q)
+    u = r.ringMulFast(a, e0)
+    u = r.ringAdd(u, e1)
+
+    # v = b*e0 + m*e2 + z (mod p)
+    mthP = cint(-1)/cint(m)
+
+    zMthP = r.zero()
+
+    for i in range(0, len(z)):
+      zMthP[i] = z[i]
+
+    @for_range(self.n)
+    def range_body(i):
+      e2[i] *= cint(self.m)
+
+    v = r.ringMulFast(b, e0)
+    v = r.ringAdd(v, e2)
+    v = r.ringAdd(v, zMthP)
+
+    res = [r.reveal(v), r.reveal(u)]
+    return res
+
+  # decrypts the ciphertext (v,u, w) using the secret key s
+  # only supports decrypting ciphertext of size 3
+  def dec(self, v, u, w, s):
+    r = self.r
+    lgM = self.lgM
+    m = self.m
+    clearM = cint(m)
+    zNoisy = r.ringAdd(v, r.ringMulFast(u, s))
+    s2 = r.ringMulFastSecret(s, s)
+    s3 = r.ringMulFast(w, s2)
+    zNoisy = r.ringAdd(zNoisy, s3)
+
+    # halfMthP = clearM / 2
+    z = sint.Array(self.n)
+    # @for_range(self.n)
+    # def round(i):
+    #  zNoisy[i] = zNoisy[i] + halfMthP
+    #  zNoisy[i] = zNoisy[i] - halfMthP
+    #  z[i] = zNoisy[i] % self.m
+
+    def f():
+      halfMthP = self.m / 2
+      print_ln("[Info] start thread %s", get_arg()[0])
+      @for_range(self.n/8)
+      def range_body(i):
+        zNoisy[i+get_arg()[0]*self.n/8] = zNoisy[i+get_arg()[0]*self.n/8] + halfMthP
+        zNoisy[i+get_arg()[0]*self.n/8] = zNoisy[i+get_arg()[0]*self.n/8] - halfMthP
+        z[i+get_arg()[0]*self.n/8] = zNoisy[i+get_arg()[0]*self.n/8] % self.m
+      print_ln("[Info] finish thread %s", get_arg()[0])
+
+    t = MPCThread(f, 'f')
+    for i in range(8):
+      times = i
+      t.start(times)
+    for i in range(8):
+      t.join()
+
+    print_ln("dec finish")
+    return z
+
+  #The two functions below are used to generate laplace noise
+  def exp_sample(self, mean):
+    rand = sint.get_random_int(15)
+    rand_fix = sfix.load_sint(rand)/32768
+    log_r = mpc_math.log2_fx(rand_fix)
+    return -mean*log_r
+
+  def laplace(self, scale):
+    e1 = self.exp_sample(scale)
+    e2 = self.exp_sample(scale)
+    return e1 - e2

@@ -1,0 +1,68 @@
+execfile('/root/SCALE-MAMBA/Programs/lwe/lwe.mpc')
+
+#ciphertext modulus (the prime used in SCALE-MAMBA)
+#p = 3608870760655701536654448303084521404059979435669688520664454167677047564331360806878098945169255539464747077653151390316596266506041127794233364507011499768902844417
+
+#used in ring multiplication
+w = cint(3)
+
+lgN = 16 #polynomial degree
+n = 65536 #polynomial degree
+lgP = 109 #ciphertext modulus bitsize
+N = 1 #used in binomial distribution
+lgM = 27 #plaintext modulus bitsize
+
+r = Ring(lgN, w)
+lwe = LWE(r, N, lgM, n, lgP)
+
+############ Benchmark decryption ########################
+
+#an example of decrypting a ciphertext and then adding noise to each bin
+
+#bin1 = cint.public_input(0)
+#bin2 = cint.public_input(0)
+#binning = sint.Array(2)
+#for i in range(2):
+#  binning[i] = 0
+
+# (v,u) is the ciphertext to decrypt
+v = cint.Array(n)
+u = cint.Array(n)
+w = cint.Array(n)
+
+#read (v,u) from public input
+@for_range(n)
+def set_V(i):
+  v[i] = cint.public_input(0)
+@for_range(n)
+def set_U(i):
+  u[i] = cint.public_input(0)
+@for_range(n)
+def set_W(i):
+  w[i] = cint.public_input(0)
+
+s = sint.Array(n) #secret key
+
+#read the shares of s from private input
+@for_range(n)
+def copy(i):
+  tmp = [sint()]
+  input_shares(0, *tmp)
+  s[i] = tmp[0]
+
+#decrypt the ciphertext (v,u) using the secret key s
+x2 = lwe.dec(v, u, w, s)
+
+#coeffecients of the plaintext that fall into each bin are summed up
+#for i in range(l):
+#  z = x2[i]
+#  if_then(l <= bin1)
+#  binning[0] += z
+#  else_then()
+#  binning[1] += z
+#  end_if()
+
+#add laplace noise to each bin before revealing the result
+#for i in range(2):
+#  z = binning[i] + lwe.laplace(sint(1))
+#  print_ln("Decrypt result is: %s ", z.reveal())
