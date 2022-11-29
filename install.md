@@ -1,4 +1,4 @@
-#### Envinronments
+#### Environments
 
 We experiment on AWS instances with Ubuntu 20.04. Please refer to our paper for
 more details.
