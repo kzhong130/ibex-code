@@ -1,4 +1,4 @@
-# Auction
+# Micro benchmark for auction
 ## How to build
 ```
 cmake . -B build
