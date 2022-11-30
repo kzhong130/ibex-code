@@ -1,8 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
 
-# processed_req=0
-
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -27,9 +25,6 @@ class handler(BaseHTTPRequestHandler):
         html = f.read()
         self.wfile.write(html)
         f.close()
-        # global processed_req
-        # processed_req+=1
-        # print("processed requests:", processed_req)
 
 with HTTPServer(('', 8000), handler) as server:
     server.serve_forever()
