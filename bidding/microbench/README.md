@@ -28,5 +28,5 @@ make -j
       number]`.
 
 + Costs related to bidding shares
-    + Copy `pk` and `sk` in [files directory](../files/) into `build/bin` directory.
+    + Copy `pk` and `sk` in [files](../files/) directory into `build/bin` directory.
     + Run `./bidding_share [bidder number]`.
