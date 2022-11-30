@@ -5,8 +5,3 @@ add_definitions(-std=c++11)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 ADD_EXECUTABLE(aggregator_micro_test aggregator_micro_test.cpp)
 target_link_libraries(aggregator_micro_test SEAL::seal ssl crypto)
-
-add_definitions(-std=c++11)
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
-ADD_EXECUTABLE(he_test he_test.cpp)
-target_link_libraries(he_test SEAL::seal ssl crypto)
