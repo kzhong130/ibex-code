@@ -1,4 +1,4 @@
-# auction
+# Auction
 ## How to build
 ```
 cmake . -B build
