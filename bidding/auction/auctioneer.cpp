@@ -118,9 +118,6 @@ class AuctionServer {
             ae.deserializeShareVec(shares_str, num_bid);
 
         vector<int> bids = ae.decodeShareVec(shares);
-        // for (int i = 0; i < bids.size(); i++) {
-        //     cout << i << " share" << party << ": " << bids[i] << endl;
-        // }
 
         // run auction
         uint32_t winner = auction(party, port, ip_s1, bids);
