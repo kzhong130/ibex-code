@@ -12,6 +12,6 @@ To compile and run the codes, please install the following dependencies:
 + [GMP](https://gmplib.org), we tried out with version 6.2.1.
 + [SealPIR](https://github.com/microsoft/SealPIR), we used a snapshot version of
   SealPIR with some modifications. The codes of SealPIR we used are included in
-  [SealPIR directory](./SealPIR/) so you don't need to install it manually.
+  [SealPIR directory](./bidding/libs/SealPIR/) so you don't need to install it manually.
 + [emp-sh2pc](https://github.com/emp-toolkit/emp-sh2pc).
 + [wrk 2](https://github.com/giltene/wrk2).
