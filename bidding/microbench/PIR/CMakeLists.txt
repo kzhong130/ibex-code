@@ -10,5 +10,5 @@ INCLUDE_DIRECTORIES(../../libs)
 
 add_definitions(-std=c++11)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
-ADD_EXECUTABLE(micro_test micro_test.cpp ../../libs/SealPIR/src/pir.hpp ../../libs/SealPIR/src/pir.cpp ../../libs/SealPIR/src/pir_client.hpp ../../libs/SealPIR/src/pir_client.cpp ../../libs/SealPIR/src/pir_server.hpp ../../libs/SealPIR/src/pir_server.cpp)
-target_link_libraries(micro_test SEAL::seal ssl crypto)
+ADD_EXECUTABLE(pir_micro pir_micro.cpp ../../libs/SealPIR/src/pir.hpp ../../libs/SealPIR/src/pir.cpp ../../libs/SealPIR/src/pir_client.hpp ../../libs/SealPIR/src/pir_client.cpp ../../libs/SealPIR/src/pir_server.hpp ../../libs/SealPIR/src/pir_server.cpp)
+target_link_libraries(pir_micro SEAL::seal ssl crypto)
