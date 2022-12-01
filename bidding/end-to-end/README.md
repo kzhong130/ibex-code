@@ -27,3 +27,4 @@ make -j
 + On the client machine, run `./client [auctioneer IP]`. `auctioneer IP` is in
   the format of `IP:PORT`. The `client` program will output the total latency.
 
+## Ibex's oblivious bidding protocol
