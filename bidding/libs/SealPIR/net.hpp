@@ -218,7 +218,6 @@ void configure_context(SSL_CTX *ctx) {
     }
 }
 
-// NOTE
 SSL *ssl_connect_to_ip(string ip, int &fd) {
     const SSL_METHOD *method = TLS_client_method();
 
