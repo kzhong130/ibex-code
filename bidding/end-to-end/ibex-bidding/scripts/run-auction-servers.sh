@@ -10,12 +10,12 @@ echo "connect to $ip1"
 eval "ssh $user_name@$ip1                   \\
     'cd;                                    \\
     cd $auctioneer_bin_path;             \\
-    ./bin/auctioneer 1 12345 $ip1 0.0.0.0:12346 $bidder_num;'       \\
+    ./auctioneer 1 12345 $ip1 0.0.0.0:12346 $bidder_num;'       \\
     &"
 
 echo "connect to $ip2"
 eval "ssh $user_name@$ip2                   \\
     'cd;                                    \\
     cd $auctioneer_bin_path;             \\
-    ./bin/auctioneer 2 12345 $ip1 0.0.0.0:12346 $bidder_num;'       \\
+    ./auctioneer 2 12345 $ip1 0.0.0.0:12346 $bidder_num;'       \\
     &"

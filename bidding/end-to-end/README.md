@@ -24,7 +24,7 @@ make -j
 
 #### Edit config files
 + Edit the variable `ips` in `stop-bidders.sh` and
-  `start-bidders.sh`, change it to the the ips of the bidders
+  `run-bidders.sh`, change it to the the ips of the bidders
   machine. We assume using `c5.24xlarge instances`, so each server simulate 6
   bidders.
 + Edit the variable `ips`, `ip1`, and `ip2` in `stop-auction-servers.sh` and
@@ -35,7 +35,7 @@ make -j
   directory on all machines.
 
 #### Start the bidders
-+ On the client machine, run `bash start-bidders.sh [user name]
++ On the client machine, run `bash run-bidders.sh [user name]
   [logarithm of total group] [path of bidder program]`.
   + `user name` is the user name you used to log into your bidders machine.
   + `logarithm of total group`, for example, is set to 15 for $2^{15}$ groups.
