@@ -29,3 +29,5 @@ make -j
 
 ## Ibex's oblivious bidding protocol
 ### How to build
+
+### How to run
