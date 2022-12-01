@@ -15,7 +15,7 @@ Please refer to [install.md](./install.md).
 
 + Oblivious bidding
     + [bidding/libs](./bidding/libs/): implementation of libraries used in the
-      oblivious bidding protocol. We used and modified the Microsoft's
+      oblivious bidding protocol. We used and modified the original Microsoft's
       [SealPIR](https://github.com/microsoft/SealPIR) codebase.
     + [bidding/microbench](./bidding/microbench/): microbenchmarks of oblivious
       bidding protocol.
