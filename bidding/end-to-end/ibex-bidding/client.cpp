@@ -194,6 +194,7 @@ class Client {
             duration_cast<std::chrono::duration<double>>(e_ - s_).count();
         cout << "pir time: " << query_pir_time << endl;
 
+        s_ = system_clock::now();
         // randomize the shares
         for (int i = 0; i < bidder_num; i++) {
             vector<int> r;
@@ -203,7 +204,7 @@ class Client {
             encShare2[i] = ae.randomize(encShare2[i], er);
         }
 
-        s_ = system_clock::now();
+        // TODO: REMOVE from here
         // submit to auction servers and receive response, all done!
         uint32_t winner = connect_auction_servers(encShare1, encShare2);
         e_ = system_clock::now();
@@ -211,13 +212,15 @@ class Client {
             duration_cast<std::chrono::duration<double>>(e_ - s_).count();
 
         end = system_clock::now();
-        cout
-            << "TIME: "
-            << duration_cast<std::chrono::duration<double>>(end - start).count()
-            << endl;
 
         cout << "winner bid: " << bids[winner] << endl;
-        cout << "auction time: " << auction_time << endl;
+        cout << "Total time: "
+             << duration_cast<std::chrono::duration<double>>(end - start)
+                        .count() *
+                    1000.0
+             << " ms" << endl;
+        cout << "Time with cached bidding shares: " << auction_time * 1000.0
+             << " ms" << endl;
     }
 };
 
