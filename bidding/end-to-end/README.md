@@ -8,6 +8,11 @@ clear to auction server and Ibex's oblivious bidding protocol.
 
 ## Ibex's oblivious bidding protocol
 ### How to build
+```
+cmake . -B build
+cd build
+make -j
+```
 
 ### How to run
 
