@@ -16,6 +16,46 @@ make -j
 
 ### How to run
 
+#### Setup
++ Establish the SSH keyless connections from your `client` machine to all other
+  machines of bidders and auction servers.
++ On all other machines, build the programs correctly.
+
+### Edit config files
++ Edit the variable `ips` in `stop-remote-servers.sh` and
+  `start-remote-servers.sh`, change it to the the ips of the bidders
+  machine. We assume using `c5.24xlarge instances`, so each server simulate 6
+  bidders.
++ Edit the variable `ips` in `stop-auction-servers.sh` and
+  `start-auction-servers.sh`, change it to the the ips of the two auction servers.
++ Copy all files in [files](../files/) directory into `build/bin` directory on
+  all machines.
++ Copy all scripts in [script](./ibex/scripts/) directory into `build/bin`
+  directory on all machines.
+
+### Start the bidders
++ On the client machine, run `bash start-remote-servers.sh [user name]
+  [logarithm of total group] [path of bidder program]`.
+  + `user name` is the user name you used to log into your bidders machine.
+  + `logarithm of total group`, for example, is set to 15 for $2^{15}$ groups.
+  + `[path of bidder program]` is the path on the bidder servers where the
+    bidder program is. For example, it could be `ibex/bidding/end-to-end/ibex-bidding/build/bin`
+
+#### Start the auction servers
++ On the client machine, run `bash run-auction-servers.sh [user name] [bidder
+  number] `[path of bidder program]` is the path on the bidder servers where the
+  auctioneer program is. For example, it could be
+  `ibex/bidding/end-to-end/ibex-bidding/build/bin``.
+
+#### Start the client
++ On the client machine, copy `ips.txt` into `bin/build` directory and modify
+  `ips.txt` accordingly.
+    + The format of `ips.txt` is `IP:PORT` in each line
+    + The first two lines are ip addresses of the two auction servers.
+    + Afterwards each line represents a bidder's PIR server.
++ On the client machine, run `./client -b [bidder number] -l [logarithm of total
+  group]`.
+
 ## Non-private baseline
 ### How to build
 ```
