@@ -20,11 +20,10 @@ make -j
   `auctioneer` program will read the IP addresses of bidders from this file, please
   change it accordingly and copy it into the `build` directory.
 + On the bidder machine, copy `start-bidders.sh` into the `build` directory. Run
-  `./start-bidders.sh [bidder number]` to start the bidders programs which
+  `bash start-bidders.sh [bidder number]` to start the bidders programs which
   starting listening from port `6666` to `6666+[bidder number]`.
-+ On the auctioneer machine, run `./auctioneer [0.0.0.0:PORT]` to start the
-  auctioneer program and listening on the `PORT`. By default `PORT` is set to
-  `5555`.
++ On the auctioneer machine, run `./auctioneer [bidder number]` to start the
+  auctioneer program and listening on the port 5555.
 + On the client machine, run `./client [auctioneer IP]`. `auctioneer IP` is in
   the format of `IP:PORT`. The `client` program will output the total latency.
 
