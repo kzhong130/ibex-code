@@ -6,6 +6,11 @@ auction.
 The evaluation consists of the non-private baseline where all bids are sent in
 clear to auction server and Ibex's oblivious bidding protocol.
 
+## Ibex's oblivious bidding protocol
+### How to build
+
+### How to run
+
 ## Non-private baseline
 ### How to build
 ```
@@ -26,8 +31,3 @@ make -j
   auctioneer program and listening on the port 5555.
 + On the client machine, run `./client [auctioneer IP]`. `auctioneer IP` is in
   the format of `IP:PORT`. The `client` program will output the total latency.
-
-## Ibex's oblivious bidding protocol
-### How to build
-
-### How to run
