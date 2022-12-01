@@ -28,3 +28,4 @@ make -j
   the format of `IP:PORT`. The `client` program will output the total latency.
 
 ## Ibex's oblivious bidding protocol
+### How to build
