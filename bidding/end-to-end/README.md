@@ -18,7 +18,8 @@ make -j
 
 #### Setup
 + Establish the SSH keyless connections from your `client` machine to all other
-  machines of bidders and auction servers.
+  machines of bidders and auction servers. Make sure you have connected once
+  from your `client` machine to all other machines to establish authenticity.
 + On all other machines, build the programs correctly.
 
 #### Edit config files
@@ -26,7 +27,7 @@ make -j
   `start-bidders.sh`, change it to the the ips of the bidders
   machine. We assume using `c5.24xlarge instances`, so each server simulate 6
   bidders.
-+ Edit the variable `ips` in `stop-auction-servers.sh` and
++ Edit the variable `ips`, `ip1`, and `ip2` in `stop-auction-servers.sh` and
   `start-auction-servers.sh`, change it to the the ips of the two auction servers.
 + Copy all files in [files](../files/) directory into `build/bin` directory on
   all machines.
