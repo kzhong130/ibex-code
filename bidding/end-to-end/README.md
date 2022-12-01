@@ -21,9 +21,9 @@ make -j
   machines of bidders and auction servers.
 + On all other machines, build the programs correctly.
 
-### Edit config files
-+ Edit the variable `ips` in `stop-remote-servers.sh` and
-  `start-remote-servers.sh`, change it to the the ips of the bidders
+#### Edit config files
++ Edit the variable `ips` in `stop-bidders.sh` and
+  `start-bidders.sh`, change it to the the ips of the bidders
   machine. We assume using `c5.24xlarge instances`, so each server simulate 6
   bidders.
 + Edit the variable `ips` in `stop-auction-servers.sh` and
@@ -33,8 +33,8 @@ make -j
 + Copy all scripts in [script](./ibex/scripts/) directory into `build/bin`
   directory on all machines.
 
-### Start the bidders
-+ On the client machine, run `bash start-remote-servers.sh [user name]
+#### Start the bidders
++ On the client machine, run `bash start-bidders.sh [user name]
   [logarithm of total group] [path of bidder program]`.
   + `user name` is the user name you used to log into your bidders machine.
   + `logarithm of total group`, for example, is set to 15 for $2^{15}$ groups.
@@ -55,6 +55,10 @@ make -j
     + Afterwards each line represents a bidder's PIR server.
 + On the client machine, run `./client -b [bidder number] -l [logarithm of total
   group]`.
+
+#### Stop auctioneer and bidders
++ After each run, on the client machine, run `bash stop-auction-servers.sh [user
+  name]` and `bash stop-bidders.sh [user name]`.
 
 ## Non-private baseline
 ### How to build
