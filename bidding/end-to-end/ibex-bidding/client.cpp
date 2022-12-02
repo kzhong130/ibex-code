@@ -214,13 +214,12 @@ class Client {
         end = system_clock::now();
 
         cout << "winner bid: " << bids[winner] << endl;
-        cout << "Total time: "
-             << duration_cast<std::chrono::duration<double>>(end - start)
-                        .count() *
-                    1000.0
-             << " ms" << endl;
-        cout << "Time with cached bidding shares: " << auction_time * 1000.0
-             << " ms" << endl;
+        cout
+            << "Total time: "
+            << duration_cast<std::chrono::duration<double>>(end - start).count()
+            << " sec" << endl;
+        cout << "Time with cached bidding shares: " << auction_time << " sec"
+             << endl;
     }
 };
 
