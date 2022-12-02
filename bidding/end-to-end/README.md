@@ -29,10 +29,10 @@ make -j
   bidders.
 + Edit the variable `ips`, `ip1`, and `ip2` in `stop-auction-servers.sh` and
   `start-auction-servers.sh`, change it to the the ips of the two auction servers.
-+ Copy all files in [files](../files/) directory into `build/bin` directory on
-  all machines.
-+ Copy all scripts in [script](./ibex/scripts/) directory into `build/bin`
-  directory on all machines.
++ Copy all files in [files](../files/) directory into `build/` directory on
+  all machines where the `bidder` and `client` programs exist.
++ Copy all scripts in [script](./ibex/scripts/) directory into `build/`
+  directory on all machines where the `bidder` and `client` programs exist.
 
 #### Start the bidders
 + On the client machine, run `bash run-bidders.sh [user name]
@@ -40,16 +40,16 @@ make -j
   + `user name` is the user name you used to log into your bidders machine.
   + `logarithm of total group`, for example, is set to 15 for $2^{15}$ groups.
   + `[path of bidder program]` is the path on the bidder servers where the
-    bidder program is. For example, it could be `ibex/bidding/end-to-end/ibex-bidding/build/bin`
+    bidder program is. For example, it could be `ibex/bidding/end-to-end/ibex-bidding/build/`
 
 #### Start the auction servers
 + On the client machine, run `bash run-auction-servers.sh [user name] [bidder
   number] `[path of bidder program]` is the path on the bidder servers where the
   auctioneer program is. For example, it could be
-  `ibex/bidding/end-to-end/ibex-bidding/build/bin``.
+  `ibex/bidding/end-to-end/ibex-bidding/auctioneer/build/bin``.
 
 #### Start the client
-+ On the client machine, copy `ips.txt` into `bin/build` directory and modify
++ On the client machine, copy `ips.txt` into `build/` directory and modify
   `ips.txt` accordingly.
     + The format of `ips.txt` is `IP:PORT` in each line
     + The first two lines are ip addresses of the two auction servers.

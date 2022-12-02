@@ -24,7 +24,7 @@ make -j
 ### How to run
 + Costs of local 2PC auction
     + Enter `build` directory.
-    + Run `./bin/auction 0 5555 [bidder number] & ./bin/auction 1 5555 [bidder
+    + Run `./bin/auction 1 12345 [bidder number] & ./bin/auction 2 12345 [bidder
       number]`.
 
 + Costs related to bidding shares

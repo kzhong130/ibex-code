@@ -23,7 +23,9 @@ class AuctionEnc {
     vector<mpz_t> encBid(vector<int>& bit_vec) {
         vector<mpz_t> enc_vec(bit_vec.size());
         for (int i = 0; i < bit_vec.size(); i++) {
-            assert(gm.enc(bit_vec[i], enc_vec[i]) == 0);
+            if (gm.enc(bit_vec[i], enc_vec[i]) != 0) {
+                assert(0);
+            }
         }
         return enc_vec;
     }
@@ -32,7 +34,9 @@ class AuctionEnc {
         vector<int> dec_vec(v.size());
         for (int i = 0; i < v.size(); i++) {
             dec_vec[i] = gm.dec(v[i]);
-            assert(dec_vec[i] != -1);
+            if (dec_vec[i] == -1) {
+                assert(0);
+            }
         }
         return dec_vec;
     }
