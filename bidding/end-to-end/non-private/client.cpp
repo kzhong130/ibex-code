@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
     auto end = system_clock::now();
     cout << "TIME: "
          << duration_cast<std::chrono::duration<double>>(end - start).count()
-         << endl;
+         << " sec" << endl;
 
     return 0;
 }
