@@ -34,12 +34,8 @@ int main(int argc, char* argv[]) {
         randomize_time +=
             duration_cast<std::chrono::duration<double>>(end - start).count();
 
-        start = system_clock::now();
         string ers1_str = ae.serializeShares(ers1);
         string ers2_str = ae.serializeShares(ers2);
-        end = system_clock::now();
-        randomize_time +=
-            duration_cast<std::chrono::duration<double>>(end - start).count();
 
         start = system_clock::now();
         vector<mpz_t> ers1_ = ae.deserializeShares(ers1_str);
