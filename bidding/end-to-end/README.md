@@ -44,7 +44,9 @@ make -j
 
 #### Start the auction servers
 + On the client machine, run `bash run-auction-servers.sh [user name] [bidder
-  number] `[path of bidder program]` is the path on the bidder servers where the
+  number] [path of bidder program]`.
+  + `user name` is the user name you used to log into your bidders machine.
+  + `[path of bidder program]` is the path on the bidder servers where the
   auctioneer program is. For example, it could be
   `ibex/bidding/end-to-end/ibex-bidding/auctioneer/build/bin``.
 
