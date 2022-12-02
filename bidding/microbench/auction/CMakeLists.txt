@@ -18,10 +18,3 @@ endmacro()
 
 # Test cases
 add_test_executable_with_lib(auction "")
-
-INCLUDE_DIRECTORIES(../../libs)
-
-add_definitions(-std=c++11)
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
-ADD_EXECUTABLE(bidding_share bidding_share.cpp)
-TARGET_LINK_LIBRARIES(bidding_share gmp)
