@@ -1,0 +1,9 @@
+CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
+set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -O2")
+
+INCLUDE_DIRECTORIES(../../libs)
+
+add_definitions(-std=c++11)
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
+ADD_EXECUTABLE(bidding_share bidding_share.cpp)
+TARGET_LINK_LIBRARIES(bidding_share gmp)

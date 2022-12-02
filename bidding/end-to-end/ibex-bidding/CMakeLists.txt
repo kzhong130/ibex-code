@@ -1,19 +1,9 @@
-cmake_minimum_required (VERSION 2.8.11)
-project (emp-sh2pc)
-set(NAME "emp-sh2pc")
-
-find_path(CMAKE_FOLDER NAMES cmake/emp-tool-config.cmake)
-include(${CMAKE_FOLDER}/cmake/emp-base.cmake)
-
-find_package(emp-ot REQUIRED)
-include_directories(${EMP-OT_INCLUDE_DIRS})
+CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
+set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -O2")
 
 find_package(SEAL 4.0.0 REQUIRED)
 
 INCLUDE_DIRECTORIES(../../libs)
-
-add_executable(auctioneer auctioneer.cpp)
-target_link_libraries(auctioneer ${EMP-OT_LIBRARIES} gmp ssl crypto pthread)
 
 add_definitions(-std=c++11)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
